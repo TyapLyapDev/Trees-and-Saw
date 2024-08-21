@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2610d06fccb7235469a452f370d0cbef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHP: 10
-  HealthBarFill: {fileID: 4426659599821473203}
+  _healthBarFill: {fileID: 4426659599821473203}
+  _totalHp: 10
 --- !u!1 &7800741449376412794
 GameObject:
   m_ObjectHideFlags: 0

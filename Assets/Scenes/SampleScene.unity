@@ -447,7 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb32e512acf61b41859fd6928abc0a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moneyText: {fileID: 1141614486}
+  _moneyText: {fileID: 1141614486}
 --- !u!4 &1080533929
 Transform:
   m_ObjectHideFlags: 0
@@ -457,7 +457,7 @@ Transform:
   m_GameObject: {fileID: 1080533927}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6486027, y: -0.17975853, z: 0.043898635}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -475,13 +475,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a868bec7cfea8c439492fb9192dcc19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treePrefabs:
+  _treePrefabs:
   - {fileID: 5940717816906127596, guid: 194a659f943a51046a87b37b1172b0c7, type: 3}
   - {fileID: 2661593433612637265, guid: ce61819d96622ee41a4ee078981209c2, type: 3}
   - {fileID: 5422058916156193743, guid: 313323d047f8393479d4bb4da7157e5c, type: 3}
   - {fileID: 2944276104726710227, guid: c0d65ce1784dafd4e85745dfe8a1777a, type: 3}
   - {fileID: 3479922655694607398, guid: eb74436ad2add4f48a909722a10b2c7e, type: 3}
-  canvas: {fileID: 1681621207}
+  _canvas: {fileID: 1681621207}
 --- !u!1 &1141614484
 GameObject:
   m_ObjectHideFlags: 0

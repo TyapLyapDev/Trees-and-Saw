@@ -1,35 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TreeManager : MonoBehaviour
 {
-    [SerializeField] GameObject[] treePrefabs;
-    [SerializeField] Transform canvas;
+    [SerializeField] private GameObject[] _treePrefabs;
+    [SerializeField] private Transform _canvas;
 
-    public static TreeManager instance;
+    public static TreeManager Instance;
 
-    private Tree currentTree;
-    private int currentTreeIndex;
-    void Awake()
+    private int _currentTreeIndex;
+
+    private void Awake()
     {
-        instance = this;
-        currentTreeIndex = -1;
+        Instance = this;
+        _currentTreeIndex = -1;
         SpawnTree();
     }
-    public void SpawnTree()
-    {
-        currentTreeIndex++;
-        if(currentTreeIndex < treePrefabs.Length)
-        {
-            GameObject treeToSpawn = treePrefabs[currentTreeIndex];
-            GameObject obj = Instantiate(treeToSpawn, canvas);
-            currentTree = obj.GetComponent<Tree>();
-        }
-    }
+
     public void ReplaceTree(GameObject tree)
     {
         Destroy(tree);
         SpawnTree();
+    }
+
+    private void SpawnTree()
+    {
+        _currentTreeIndex++;
+        if(_currentTreeIndex < _treePrefabs.Length)
+        {
+            GameObject treeToSpawn = _treePrefabs[_currentTreeIndex];
+            Instantiate(treeToSpawn, _canvas);
+        }
     }
 }

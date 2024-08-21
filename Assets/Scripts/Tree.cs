@@ -1,34 +1,29 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Tree : MonoBehaviour
 {
-    [SerializeField] private int totalHP;
-    private int hp;
-    [SerializeField] Image HealthBarFill;
-    // Start is called before the first frame update
+    [SerializeField] private Image _healthBarFill;
+    [SerializeField] private int _totalHp;
+
+    private int _hp;
+
     void Start()
     {
-        hp = totalHP;
+        _hp = _totalHp;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnMouseDown()
     {
         Hit();
     }
-    public void Hit()
+
+    private void Hit()
     {
-        hp--;
-        HealthBarFill.fillAmount = (float)hp / (float)totalHP;
-        if (hp <= 0)
+        _hp--;
+        _healthBarFill.fillAmount = (float)_hp / _totalHp;
+
+        if (_hp <= 0)
         {
             CutDown(); 
         }
@@ -36,7 +31,7 @@ public class Tree : MonoBehaviour
 
     private void CutDown()
     {
-        GameController.instance.AddMoney(totalHP);
-        TreeManager.instance.ReplaceTree(gameObject);
+        GameController.Instance.AddMoney(_totalHp);
+        TreeManager.Instance.ReplaceTree(gameObject);
     }
 }

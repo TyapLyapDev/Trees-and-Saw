@@ -1,38 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI moneyText;
-    private int money;
+    [SerializeField] private TextMeshProUGUI _moneyText;
+    
+    public static GameController Instance;
 
-    public static GameController instance;
-    // Start is called before the first frame update
-    void Awake()
+    private int _money;
+
+    private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    //public void TreeClicked()
-    //{
-    //    money++;
-    //    moneyText.SetText(money.ToString());
-    //}
     public void AddMoney(int amount)
     {
-        money += amount;
-        moneyText.SetText(money.ToString());
+        _money += amount;
+        _moneyText.SetText(_money.ToString());
     }
-    public void PayMoney(int amount)
+
+    private void PayMoney(int amount)
     {
-        money -= amount;
-        moneyText.SetText(money.ToString());
+        _money -= amount;
+        _moneyText.SetText(_money.ToString());
     }
 }
