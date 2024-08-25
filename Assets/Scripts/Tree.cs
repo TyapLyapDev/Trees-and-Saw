@@ -5,6 +5,7 @@ public class Tree : MonoBehaviour
 {
     [SerializeField] private Image _healthBarFill;
     [SerializeField] private int _totalHp;
+    [SerializeField] private string _description;
 
     private int _hp;
 
@@ -13,7 +14,7 @@ public class Tree : MonoBehaviour
         _hp = _totalHp;
     }
 
-    private void OnMouseDown()
+    private void OnClick()
     {
         Hit();
     }
@@ -31,7 +32,7 @@ public class Tree : MonoBehaviour
 
     private void CutDown()
     {
-        GameController.Instance.AddMoney(_totalHp);
-        TreeManager.Instance.ReplaceTree(gameObject);
+        Wallet.Instance.AddMoney(_totalHp);
+        TreeFabric.Instance.ReplaceTree(gameObject);
     }
 }
