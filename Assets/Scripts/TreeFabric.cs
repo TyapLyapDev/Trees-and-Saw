@@ -1,13 +1,19 @@
+using System;
 using UnityEngine;
 
 public class TreeFabric : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _treePrefabs;
-    [SerializeField] private Transform _canvas;
+    public event Action<object, Tree> OnNewTreeEvent;
 
     public static TreeFabric Instance;
 
+    public Tree CurrentTree { get => _currentTree; }
+
+    [SerializeField] private GameObject[] _treePrefabs;
+    [SerializeField] private Transform _canvas;
+
     private int _currentTreeIndex;
+    private Tree _currentTree;
 
     private void Awake()
     {
@@ -28,7 +34,8 @@ public class TreeFabric : MonoBehaviour
         if(_currentTreeIndex < _treePrefabs.Length)
         {
             GameObject treeToSpawn = _treePrefabs[_currentTreeIndex];
-            Instantiate(treeToSpawn, _canvas);
+            _currentTree = Instantiate(treeToSpawn, _canvas).gameObject.GetComponent<Tree>();
+            OnNewTreeEvent?.Invoke(this, _currentTree);
         }
     }
 }

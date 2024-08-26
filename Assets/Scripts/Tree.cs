@@ -1,12 +1,15 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Tree : MonoBehaviour
 {
-    [SerializeField] private Image _healthBarFill;
+    public event Action<object, float, float> OnTreeHpChangedEvent;
+
     [SerializeField] private int _totalHp;
     [SerializeField] private string _description;
-
+    [SerializeField] private int _award;
+    [SerializeField] private int _level;
     private int _hp;
 
     void Start()
@@ -14,16 +17,10 @@ public class Tree : MonoBehaviour
         _hp = _totalHp;
     }
 
-    private void OnClick()
-    {
-        Hit();
-    }
-
     private void Hit()
     {
         _hp--;
-        _healthBarFill.fillAmount = (float)_hp / _totalHp;
-
+        OnTreeHpChangedEvent?.Invoke(this, _hp, _totalHp);
         if (_hp <= 0)
         {
             CutDown(); 
@@ -32,7 +29,7 @@ public class Tree : MonoBehaviour
 
     private void CutDown()
     {
-        Wallet.Instance.AddMoney(_totalHp);
+        Wallet.Instance.AddMoney(this, _totalHp);
         TreeFabric.Instance.ReplaceTree(gameObject);
     }
 }

@@ -1,27 +1,36 @@
 using UnityEngine;
-using TMPro;
+using System;
 
-public class Wallet : MonoBehaviour
+public class Wallet
 {
-    [SerializeField] private TextMeshProUGUI _moneyText;
+    public event Action<object, int> OnMoneyChangedEvent;
 
-    public static Wallet Instance;
-
-    private int _money;
-    private void Awake()
+    public static Wallet Instance
     {
-        Instance = this;
+        get
+        {
+            if (_instance == null)
+                _instance = new Wallet();
+            return _instance;
+        }
     }
-    public void AddMoney(int amount)
+
+    private static Wallet _instance;
+    private int _money;
+
+    public void AddMoney(object sender, int amount)
     {
         _money += amount;
-        _moneyText.SetText(_money.ToString());
-    }
-    public void SpentMoney(int price)
-    {
-        if(_money>=price)
-        _money -= price;
-        _moneyText.SetText(_money.ToString());
+        OnMoneyChangedEvent?.Invoke(sender, _money);
     }
 
+    public void SpentMoney(object sender, int price)
+    {
+        if (IsEnoughMoney(price))
+        {
+            _money -= price;
+            OnMoneyChangedEvent?.Invoke(sender, _money);
+        } 
+    }
+    public bool IsEnoughMoney(int price) => price <= _money;
 }

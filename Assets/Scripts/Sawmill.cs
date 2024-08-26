@@ -3,23 +3,21 @@ using UnityEngine;
 
 public class Sawmill : MonoBehaviour
 {
-    public Worker[] Workers = new Worker[10];
+    const int MAX_WORKERS = 10;
+    public Worker[] Workers = new Worker[MAX_WORKERS];
     public static Sawmill Instance;
 
     private int _workersCount;
+
     private void Awake()
     {
         Instance = this;
     }
+
     public void AddWorker()
     {
-        if (_workersCount == 10)
-            throw new InvalidOperationException(" оличество работник не может быть больше 10ю");
+        if (_workersCount == MAX_WORKERS)
+            throw new InvalidOperationException("You can't add more than 10 workers!");
         Workers[_workersCount++] = new Worker();
     }
-}
-public class Worker
-{
-    public int Level { get; private set; } = 1;
-    public void LevelUp() => Level++;
 }
