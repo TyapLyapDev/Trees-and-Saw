@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class TreeFabric : MonoBehaviour
 {
-    public event Action<object, Tree> OnNewTreeEvent;
-
     public static TreeFabric Instance;
 
     public Tree CurrentTree { get => _currentTree; }
@@ -35,7 +33,7 @@ public class TreeFabric : MonoBehaviour
         {
             GameObject treeToSpawn = _treePrefabs[_currentTreeIndex];
             _currentTree = Instantiate(treeToSpawn, _canvas).gameObject.GetComponent<Tree>();
-            OnNewTreeEvent?.Invoke(this, _currentTree);
+            SpawnNewTreeEvent.Instance?.Invoke(_currentTree);
         }
     }
 }

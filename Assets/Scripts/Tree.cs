@@ -29,7 +29,7 @@ public class Tree : MonoBehaviour
 
     private void CutDown()
     {
-        Wallet.Instance.AddMoney(this, _totalHp);
+        Wallet.Instance.AddMoney(_totalHp);
         TreeFabric.Instance.ReplaceTree(gameObject);
     }
 }

@@ -4,15 +4,14 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Image _healthBarFill;
-    [SerializeField] TreeFabric _treeFabric;
 
     private Tree _currentTree;
 
     private void Awake()
     {
-        _treeFabric.OnNewTreeEvent += InitializeCurrentTree;
+        SpawnNewTreeEvent.Instance.AddListener(InitializeCurrentTree);
     }
-    public void InitializeCurrentTree(object sender, Tree tree)
+    public void InitializeCurrentTree(Tree tree)
     {
         _currentTree = tree;
         _currentTree.OnTreeHpChangedEvent += OnTreeHpChanged;

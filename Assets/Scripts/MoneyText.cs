@@ -11,7 +11,7 @@ public class MoneyText : MonoBehaviour
         Wallet.Instance.OnMoneyChangedEvent += OnMoneyChanged;
     }
 
-    private void OnMoneyChanged(object sender, int money)
+    private void OnMoneyChanged(int money)
     {
         _moneyText.SetText(money.ToString());
 

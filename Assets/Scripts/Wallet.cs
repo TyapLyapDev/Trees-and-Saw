@@ -1,9 +1,8 @@
-using UnityEngine;
 using System;
 
 public class Wallet
 {
-    public event Action<object, int> OnMoneyChangedEvent;
+    public event Action<int> OnMoneyChangedEvent;
 
     public static Wallet Instance
     {
@@ -18,10 +17,10 @@ public class Wallet
     private static Wallet _instance;
     private int _money;
 
-    public void AddMoney(object sender, int amount)
+    public void AddMoney(int amount)
     {
         _money += amount;
-        OnMoneyChangedEvent?.Invoke(sender, _money);
+        OnMoneyChangedEvent?.Invoke(_money);
     }
 
     public void SpentMoney(object sender, int price)
@@ -29,7 +28,7 @@ public class Wallet
         if (IsEnoughMoney(price))
         {
             _money -= price;
-            OnMoneyChangedEvent?.Invoke(sender, _money);
+            OnMoneyChangedEvent?.Invoke(_money);
         } 
     }
     public bool IsEnoughMoney(int price) => price <= _money;
